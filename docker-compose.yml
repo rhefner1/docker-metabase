@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  mongodb:
+    build: mongodb/
+    ports:
+      - "27017:27017"
+    networks:
+      - stack
+
+  metabase:
+    build: metabase/
+    ports:
+      - "3000:3000"
+    networks:
+      - stack
+    depends_on:
+      - mongodb
+
+networks:
+  stack:
+    driver: bridge
